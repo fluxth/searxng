@@ -62,9 +62,10 @@ def dbpedia(query, _lang):
 
 def duckduckgo(query, _lang):
     # duckduckgo autocompleter
-    url = 'https://ac.duckduckgo.com/ac/?{0}&type=list'
+    url = 'https://duckduckgo.com/ac/?'
+    url += urlencode({'q': query, 'type': 'list', 'kl': 'wt-wt'})
 
-    resp = loads(get(url.format(urlencode(dict(q=query)))).text)
+    resp = loads(get(url).text)
     if len(resp) > 1:
         return resp[1]
     return []
